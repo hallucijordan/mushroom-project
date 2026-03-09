@@ -165,9 +165,42 @@ User-confirmed labels from the app feed back into the active learning pool, enab
 
 ---
 
-## Key Research Question
+## Key Research Questions
 
-> How many human-verified labels are needed (via active learning) to match the performance of a fully supervised model trained on all 61,069 simulated samples — and can a vision agent replace manual feature input entirely?
+> 1. How many human-verified labels are needed (via active learning) to match the performance of a fully supervised model trained on all 61,069 simulated samples?
+> 2. Does the full pipeline (Gemini → features → ML classifier) outperform Gemini making a direct edibility judgment from the photo alone?
+> 3. Can a vision agent replace manual feature input entirely, without loss of classification accuracy?
+
+---
+
+## Evaluation Experiments
+
+### Experiment 1: Active Learning Efficiency
+Compare learning curves of:
+- Active learning (uncertainty sampling) vs. random sampling baseline
+- Metric: accuracy vs. number of labeled samples queried
+
+### Experiment 2: System Comparison (Core Contribution)
+
+Three systems evaluated on the same set of mushroom images with known ground-truth labels:
+
+| System | Input | Pipeline |
+|---|---|---|
+| **A — Gemini Direct** | Photo | Gemini → edible/poisonous |
+| **B — Pure ML** | Manually filled 20 features | ML Classifier → edible/poisonous |
+| **C — Full System** | Photo | Gemini → 20 features → ML Classifier → edible/poisonous |
+
+**Questions this answers:**
+- **C vs. A:** Does the structured ML classifier add value on top of LLM direct judgment?
+- **C vs. B:** How much quality is lost when features come from vision extraction vs. human annotation?
+- **A vs. B:** LLM visual understanding vs. traditional ML — who has the higher ceiling?
+
+**Why this matters:** Many assume large vision LLMs can replace specialized pipelines. This experiment quantifies whether domain-trained classifiers with structured feature extraction provide measurable gains over end-to-end LLM judgment — a finding applicable to medical imaging, plant disease detection, and other expert classification domains.
+
+### Experiment 3: Feature Extraction Quality
+Compare features extracted by Gemini vs. ground-truth features from secondary data:
+- Per-feature accuracy (which features does Gemini get right/wrong?)
+- Impact of extraction errors on downstream classification
 
 ---
 
