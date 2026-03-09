@@ -1,141 +1,75 @@
-# Mushroom Edibility Classifier with Active Learning & Vision Agent
+# Mushroom Edibility Classification via Active Learning
 
 ## Overview
 
-This project builds an end-to-end system to classify whether a mushroom is **edible or poisonous**, combining:
-- A machine learning classifier trained via **active learning**
-- A **Gemini Vision agent** that bridges the gap between real-world mushroom photos and structured model input
+This project investigates **active learning** as a strategy for training a mushroom edibility classifier (edible vs. poisonous) with minimal labeled data. The core research question is how much annotation effort active learning can save compared to random labeling — evaluated rigorously across multiple query strategies and classifiers.
 
-The core insight: instead of requiring users to manually fill in 20 botanical features, a vision agent extracts those features automatically from a photo — making the classifier practically usable in the real world.
+As a lightweight application demo, a **Gemini Vision agent** is also integrated to extract structured features from mushroom photos, showing how the trained classifier can be used in practice.
 
 ---
 
 ## Problem Statement
 
-Existing mushroom classifiers rely on structured feature inputs (cap shape, gill color, habitat, etc.) that require expert botanical knowledge to fill in. This creates a usage barrier for non-experts. Meanwhile, labeled mushroom data from real-world images is scarce and expensive to obtain.
+Obtaining labeled biological data is expensive — in the real world, verifying whether a mushroom species is poisonous requires expert mycologists or lab testing. Active learning addresses this by intelligently selecting which samples to label, maximizing model performance per annotation.
 
-**This project addresses both problems:**
-1. Use active learning to maximize classifier performance with minimal labeled data
-2. Use a vision LLM to auto-extract structured features from photos, removing the input barrier
+**Core question:** Given a large pool of unlabeled mushrooms and a small initial labeled set, how many labels does active learning need to reach the same accuracy as a fully supervised model trained on all data?
 
 ---
 
 ## Dataset
 
-| Dataset | Rows | Description |
+| Dataset | Rows | Role |
 |---|---|---|
-| `primary_data.csv` | 173 | Real species from *Mushrooms & Toadstools* (Hardin, 1999). Feature ranges per species. Used as initial labeled set. |
-| `secondary_data.csv` | 61,069 | Simulated individual mushrooms sampled from primary ranges. Labels hidden to serve as the unlabeled pool. |
+| `primary_data.csv` | 173 | Real species data → **initial labeled set** |
+| `secondary_data.csv` | 61,069 | Simulated instances → **unlabeled pool** (labels hidden) |
 
 **Target variable:** `class` — `e` (edible) or `p` (poisonous)
 
 **20 input features:** cap-diameter, cap-shape, cap-surface, cap-color, does-bruise-or-bleed, gill-attachment, gill-spacing, gill-color, stem-height, stem-width, stem-root, stem-surface, stem-color, veil-type, veil-color, has-ring, ring-type, spore-print-color, habitat, season
 
----
-
-## System Architecture
-
-```
-[User Photo]
-     │
-     ▼
-┌─────────────────────────────┐
-│     Gemini Vision Agent     │  ← Prompt-engineered to output
-│  (feature extraction layer) │    the 20 structured features
-└─────────────────────────────┘
-     │
-     │  structured feature vector
-     ▼
-┌─────────────────────────────┐
-│     ML Classifier           │  ← Trained via active learning
-│  (edible / poisonous)       │    on primary + queried secondary
-└─────────────────────────────┘
-     │
-     ▼
-[Prediction + Confidence Score]
-     │
-     ├── High confidence → Return result to user
-     │
-     └── Low confidence → Flag for human review
-                              └── Add to active learning pool
-```
+**Active learning simulation setup:**
+- Labels in secondary data are hidden; revealed only when queried (simulating oracle annotation)
+- Primary data serves as the cold-start labeled set (173 real species examples)
 
 ---
 
-## Component 1: Active Learning Pipeline
+## Active Learning Pipeline (Core)
 
-### Setup
-- **Initial labeled set:** Primary data (173 species), preprocessed from range values to representative single values
-- **Unlabeled pool:** Secondary data (61,069 rows) with labels hidden
-- **Oracle:** Ground-truth labels revealed on query (simulating lab verification)
+### Query Strategies (compared)
+- **Random sampling** — baseline
+- **Uncertainty sampling** — query least confident predictions
+- **Query-by-committee** — query where ensemble models disagree most
+- **BALD** (Bayesian Active Learning by Disagreement) — information-theoretic approach
 
-### Query Strategy
-Start with **uncertainty sampling** (least confidence), then evaluate:
-- Query-by-committee (ensemble disagreement)
-- BALD (Bayesian Active Learning by Disagreement)
+### Classifiers
+- Logistic Regression (well-calibrated probabilities)
+- Random Forest (ensemble, interpretable)
+- Gradient Boosting / XGBoost
 
 ### Evaluation
-Plot **learning curves**: model accuracy vs. number of labeled samples queried — comparing active learning against random sampling baseline.
-
-### Classifier Candidates
-- Random Forest (interpretable baseline)
-- Gradient Boosting (XGBoost / LightGBM)
-- Logistic Regression (uncertainty calibration)
+- **Learning curves:** accuracy vs. number of labeled samples queried
+- **Label efficiency:** how many labels needed to reach 95% / 99% of full-data accuracy
+- **AUC-ROC** and **F1** at fixed label budgets (100, 500, 1000, 5000 samples)
 
 ---
 
-## Component 2: Gemini Vision Agent
+## Gemini Integration (Demo / Appetizer)
 
-### Role
-Given a mushroom photo (and optionally context like location, season), the agent outputs a structured JSON of the 20 features required by the classifier.
+A lightweight demo showing the classifier is usable in practice:
 
-### Example Interaction
-**Input:** Photo of a mushroom + "Found in woods, autumn"
+1. User submits a mushroom photo + optional context (habitat, season)
+2. Gemini Vision extracts the 20 structured features as JSON
+3. The AL-trained classifier predicts edible / poisonous + confidence score
 
-**Agent Output:**
-```json
-{
-  "cap-diameter": 12.5,
-  "cap-shape": "x",
-  "cap-surface": "g",
-  "cap-color": "n",
-  "does-bruise-or-bleed": "f",
-  "gill-attachment": "e",
-  "gill-spacing": "c",
-  "gill-color": "w",
-  "stem-height": 9.0,
-  "stem-width": 14.0,
-  "stem-root": "s",
-  "stem-surface": "y",
-  "stem-color": "w",
-  "veil-type": "u",
-  "veil-color": "w",
-  "has-ring": "t",
-  "ring-type": "g",
-  "spore-print-color": "w",
-  "habitat": "d",
-  "season": "a"
-}
-```
+### Bonus Comparison
+A quick experiment comparing:
 
-### Prompt Design
-The agent will be given:
-- Full feature codebooks (all valid values and their meanings)
-- Instructions to estimate metrical values (cm/mm) from visual cues
-- Instructions to mark uncertain features explicitly (enabling downstream uncertainty handling)
+| System | Pipeline |
+|---|---|
+| **A — Gemini Direct** | Photo → Gemini → edible/poisonous |
+| **B — Full System** | Photo → Gemini features → ML Classifier → edible/poisonous |
 
----
-
-## Component 3: Application
-
-### Interface (TBD — CLI or Web)
-1. User uploads a mushroom photo (+ optional: location, season)
-2. Gemini extracts features → displayed to user for review/correction
-3. Classifier runs on features → returns `edible` / `poisonous` + confidence
-4. Low-confidence results flagged; user can confirm label to grow the training set
-
-### Active Feedback Loop
-User-confirmed labels from the app feed back into the active learning pool, enabling the classifier to improve over time with real-world data.
+This answers: does the domain-trained classifier add value over LLM direct judgment? Kept as a secondary finding, not the main contribution.
 
 ---
 
@@ -145,62 +79,27 @@ User-confirmed labels from the app feed back into the active learning pool, enab
 |---|---|
 | Language | Python 3.11 |
 | Environment | Conda (`mushroom-project`) |
-| ML | scikit-learn, XGBoost, modAL or custom AL loop |
+| ML / AL | scikit-learn, XGBoost, modAL or custom AL loop |
 | Vision Agent | Google Gemini API (gemini-2.0-flash) |
 | Data | pandas, numpy |
 | Visualization | matplotlib, seaborn |
-| App (TBD) | Streamlit or FastAPI + React |
 | Version Control | Git + GitHub |
 
 ---
 
 ## Milestones
 
-- [ ] **M1 — Data Preprocessing:** Parse primary ranges → single values; encode categoricals; align schemas between primary and secondary
-- [ ] **M2 — Baseline Classifier:** Train supervised model on full secondary data; establish accuracy ceiling
-- [ ] **M3 — Active Learning Loop:** Implement AL pipeline; plot learning curves vs. random sampling
-- [ ] **M4 — Gemini Agent:** Prompt engineering; feature extraction from photos; JSON output validation
-- [ ] **M5 — Integration:** Connect vision agent output → classifier pipeline
-- [ ] **M6 — Application:** Build user-facing interface; implement feedback loop
+- [ ] **M1 — Data Preprocessing:** Parse primary ranges → single values; encode categoricals; align schemas
+- [ ] **M2 — Baseline Classifier:** Train on full secondary data; establish accuracy ceiling
+- [ ] **M3 — Active Learning Loop:** Implement AL pipeline; compare query strategies; plot learning curves
+- [ ] **M4 — Gemini Demo:** Feature extraction from photos; A vs. B comparison (lightweight)
+- [ ] **M5 — Application:** Simple interface connecting photo → Gemini → classifier
 
 ---
 
-## Key Research Questions
+## Key Research Question
 
-> 1. How many human-verified labels are needed (via active learning) to match the performance of a fully supervised model trained on all 61,069 simulated samples?
-> 2. Does the full pipeline (Gemini → features → ML classifier) outperform Gemini making a direct edibility judgment from the photo alone?
-> 3. Can a vision agent replace manual feature input entirely, without loss of classification accuracy?
-
----
-
-## Evaluation Experiments
-
-### Experiment 1: Active Learning Efficiency
-Compare learning curves of:
-- Active learning (uncertainty sampling) vs. random sampling baseline
-- Metric: accuracy vs. number of labeled samples queried
-
-### Experiment 2: System Comparison (Core Contribution)
-
-Three systems evaluated on the same set of mushroom images with known ground-truth labels:
-
-| System | Input | Pipeline |
-|---|---|---|
-| **A — Gemini Direct** | Photo | Gemini → edible/poisonous |
-| **B — Pure ML** | Manually filled 20 features | ML Classifier → edible/poisonous |
-| **C — Full System** | Photo | Gemini → 20 features → ML Classifier → edible/poisonous |
-
-**Questions this answers:**
-- **C vs. A:** Does the structured ML classifier add value on top of LLM direct judgment?
-- **C vs. B:** How much quality is lost when features come from vision extraction vs. human annotation?
-- **A vs. B:** LLM visual understanding vs. traditional ML — who has the higher ceiling?
-
-**Why this matters:** Many assume large vision LLMs can replace specialized pipelines. This experiment quantifies whether domain-trained classifiers with structured feature extraction provide measurable gains over end-to-end LLM judgment — a finding applicable to medical imaging, plant disease detection, and other expert classification domains.
-
-### Experiment 3: Feature Extraction Quality
-Compare features extracted by Gemini vs. ground-truth features from secondary data:
-- Per-feature accuracy (which features does Gemini get right/wrong?)
-- Impact of extraction errors on downstream classification
+> Using active learning, how many labeled samples are required to match the performance of a fully supervised model trained on all 61,069 simulated instances — and which query strategy achieves this most efficiently?
 
 ---
 
@@ -208,7 +107,6 @@ Compare features extracted by Gemini vs. ground-truth features from secondary da
 
 | Risk | Mitigation |
 |---|---|
-| Gemini misidentifies visual features | Allow user to review/edit extracted features before classification |
-| Domain gap between primary and secondary data | Normalize features; test AL initialized from secondary-only split as ablation |
-| Model overconfidence on simulated data | Calibrate probabilities; test on held-out primary species |
-| Gemini API cost | Cache results; batch requests; use gemini-flash for lower cost |
+| Domain gap between primary and secondary data | Normalize features; ablate AL initialized from secondary-only split |
+| Model overconfidence on simulated data | Calibrate probabilities; validate on held-out primary species |
+| Gemini API cost | Cache results; use gemini-flash; limit to small photo sample set |
