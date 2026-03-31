@@ -35,20 +35,55 @@ Obtaining labeled biological data is expensive — in the real world, verifying 
 
 ## Active Learning Pipeline (Core)
 
+### Batch Configuration
+- **Batch size:** 50 instances per query round
+- **Initial labeled set:** 173 samples (primary_data.csv)
+
+### Stopping Criteria
+The Active Learning loop terminates when **any** of the following conditions is met:
+
+| Criterion | Condition | Rationale |
+|-----------|-----------|-----------|
+| **Target accuracy reached** | Validation accuracy ≥ 95% | Goal achieved, no need for more labels |
+| **Pool exhausted** | Unlabeled pool is empty | No more samples to query |
+
+
+### Initial Training Set Selection
+
+We compare two initialization strategies:
+
+| Strategy | Method | Deterministic? |
+|----------|--------|----------------|
+| **Random** | Uniform random sampling | No (seed-controlled) |
+| **D-Optimal** | Maximize information matrix determinant | Yes |
+
+Both strategies select **173 samples** as the initial labeled set.
+
+
 ### Query Strategies (compared)
-- **Random sampling** — baseline
-- **Uncertainty sampling** — query least confident predictions
-- **Query-by-committee** — query where ensemble models disagree most
-- **BALD** (Bayesian Active Learning by Disagreement) — information-theoretic approach
+
+| Strategy | Category | Selection Criterion |
+|----------|----------|---------------------|
+| Random | Baseline | Uniform random selection |
+| Uncertainty sampling | Uncertainty | Lowest prediction confidence |
+| Query-by-Committee | Ensemble | Maximum disagreement among committee models |
+| BALD | Bayesian | Maximum mutual information |
+
+All strategies select **50 instances per round**.
+
 
 ### Classifiers
-- Logistic Regression (well-calibrated probabilities)
-- Random Forest (ensemble, interpretable)
-- Gradient Boosting / XGBoost
+- **Random Forest** — ensemble of decision trees; uncertainty via tree disagreement
+- **Bagged Logistic Regression** — well-calibrated probabilities; uncertainty via bootstrap ensemble
+- **Neural Network (MLP)** — flexible learner; uncertainty via MC Dropout or Deep Ensemble
+
+
 
 ### Evaluation
+
+#### Primary Metric
+- **Label efficiency:** Number of labels required to reach 95% validation accuracy
 - **Learning curves:** accuracy vs. number of labeled samples queried
-- **Label efficiency:** how many labels needed to reach 95% / 99% of full-data accuracy
 - **AUC-ROC** and **F1** at fixed label budgets (100, 500, 1000, 5000 samples)
 
 ---
