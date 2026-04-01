@@ -2,3 +2,8 @@ dt/
 __pycache__/
 *.pyc
 .DS_Store
+config/api_keys.py
+models/
+*.pkl
+*.joblib
+dt/
