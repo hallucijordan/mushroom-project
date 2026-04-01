@@ -20,7 +20,6 @@ Obtaining labeled biological data is expensive — in the real world, verifying 
 
 | Dataset | Rows | Role |
 |---|---|---|
-| `primary_data.csv` | 173 | Real species data → **initial labeled set** |
 | `secondary_data.csv` | 61,069 | Simulated instances → **unlabeled pool** (labels hidden) |
 
 **Target variable:** `class` — `e` (edible) or `p` (poisonous)
