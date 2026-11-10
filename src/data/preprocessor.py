@@ -35,7 +35,7 @@ CATEGORICAL_FEATURES = [
 ALL_FEATURES = NUMERIC_FEATURES + CATEGORICAL_FEATURES
 TARGET = "class"
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "dt", "MushroomDataset")
+DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "data", "MushroomDataset")
 MODEL_DIR = os.path.join(os.path.dirname(__file__), "..", "..", "models")
 
 

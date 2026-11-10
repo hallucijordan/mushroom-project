@@ -1,9 +1,12 @@
-dt/
 __pycache__/
 *.pyc
 .DS_Store
+.ipynb_checkpoints/
+
+# secrets
 config/api_keys.py
-models/
+
+# trained artefacts written by train.py (root folder only, not src/models/)
+/models/
 *.pkl
 *.joblib
-dt/
