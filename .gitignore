@@ -10,3 +10,8 @@ config/api_keys.py
 /models/
 *.pkl
 *.joblib
+.env
+*.egg-info/
+*.db
+node_modules/
+dist/

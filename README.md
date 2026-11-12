@@ -7,8 +7,9 @@ The main question: **how many labeled images does a mushroom edibility classifie
 learning reduce that number compared with random labeling?** We test 6 query strategies on 36,361 fungus
 images (179 species) with 5 random seeds each.
 
-A smaller second part is a Gemini Vision demo app that judges a mushroom photo two ways (see
-[Part 2](#part-2-gemini-demo-app-secondary)).
+Two smaller parts: a Gemini Vision demo app that judges a mushroom photo two ways
+([Part 2](#part-2-gemini-demo-app-secondary)), and an active-learning web app that is still in progress
+([Part 3](#part-3-active-learning-web-app-in-progress)).
 
 > **Research demo only. Never eat a wild mushroom based on AI advice.**
 
@@ -41,6 +42,9 @@ A smaller second part is a Gemini Vision demo app that judges a mushroom photo t
 | `results/` | 1 | Result tables (CSV) and the figures used in the report |
 | `main.ipynb` | 1 | Early active-learning experiments on the tabular UCI mushroom data |
 | `app.py`, `train.py`, `src/` | 2 | Gemini demo app |
+| `ml/` | 3 | `mushroom_ml` package: learners, query strategies, active-learning session, with unit tests |
+| `backend/` | 3 | FastAPI service around `mushroom_ml` |
+| `frontend/` | 3 | React UI prototype (simulated data) |
 | `PROPOSAL.md`, `milestone_1.md` | | Project proposal and milestone report |
 
 ## Part 1: Active learning on DF20-Mini images
@@ -133,6 +137,25 @@ python app.py                                       # opens http://localhost:786
 
 The UCI data is already in `data/MushroomDataset/` (`download_data.py` fetches it again from Kaggle).
 `src/models/base_learner.py` was rewritten in November 2026 because the first version was never committed.
+
+## Part 3: Active-learning web app (in progress)
+
+An app for running active learning interactively on the UCI tabular data, in three layers:
+
+- **`ml/` (`mushroom_ml`):** learners (Random Forest with calibration, bagged logistic regression, MLP), query
+  strategies (uncertainty, BALD, query by committee, random) and an `ALSession` that runs the loop. No web
+  code. 56 unit tests (`pytest ml/tests`).
+- **`backend/`:** FastAPI service. It starts training sessions, runs one query-label-retrain step per call,
+  returns learning curves, and runs the two-judge photo check (needs `GEMINI_API_KEY`; without a key that
+  endpoint returns 503).
+- **`frontend/`:** React UI. **This is a prototype: it is not fully connected to the backend yet and shows
+  simulated data.** The gaps are listed in [`frontend/README.md`](frontend/README.md).
+
+```bash
+pip install -e "ml/[dev]" -r backend/requirements.txt   # Python 3.11+
+pytest ml/tests
+uvicorn backend.app.main:app --port 8000              # API docs at http://localhost:8000/docs
+```
 
 ## Limitations
 
