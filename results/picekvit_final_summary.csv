@@ -1,0 +1,9 @@
+,species_acc,species_acc,species_f1,species_f1,bucket_acc,bucket_acc,bucket_f1,bucket_f1,recall_SAFE,recall_SAFE,recall_COOK_FIRST,recall_COOK_FIRST,recall_AVOID,recall_AVOID,recall_UNCERTAIN,recall_UNCERTAIN,bucket_acc_soft,bucket_acc_soft,bucket_f1_soft,bucket_f1_soft,recall_SAFE_soft,recall_SAFE_soft,recall_COOK_FIRST_soft,recall_COOK_FIRST_soft,recall_AVOID_soft,recall_AVOID_soft,recall_UNCERTAIN_soft,recall_UNCERTAIN_soft
+,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std
+strategy,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+bald,0.52,0.004,0.363,0.005,0.789,0.005,0.687,0.008,0.704,0.019,0.672,0.007,0.896,0.005,0.45,0.026,0.801,0.006,0.698,0.01,0.728,0.022,0.69,0.01,0.908,0.002,0.418,0.027
+cb_entropy,0.511,0.008,0.387,0.006,0.782,0.002,0.69,0.006,0.716,0.012,0.675,0.019,0.875,0.007,0.489,0.024,0.793,0.002,0.698,0.007,0.723,0.008,0.69,0.025,0.891,0.007,0.451,0.02
+coreset,0.501,0.007,0.345,0.013,0.775,0.004,0.676,0.008,0.723,0.016,0.676,0.015,0.866,0.009,0.446,0.04,0.786,0.005,0.686,0.014,0.726,0.011,0.691,0.017,0.881,0.009,0.424,0.058
+entropy,0.508,0.008,0.372,0.008,0.783,0.002,0.688,0.004,0.746,0.015,0.659,0.014,0.875,0.007,0.477,0.016,0.796,0.005,0.7,0.011,0.763,0.016,0.674,0.02,0.893,0.007,0.444,0.037
+margin,0.52,0.006,0.382,0.008,0.785,0.004,0.693,0.002,0.728,0.008,0.675,0.026,0.877,0.008,0.487,0.037,0.795,0.003,0.7,0.003,0.736,0.003,0.679,0.022,0.896,0.004,0.454,0.037
+random,0.513,0.006,0.357,0.01,0.78,0.007,0.682,0.009,0.726,0.017,0.663,0.029,0.876,0.008,0.461,0.028,0.79,0.005,0.69,0.006,0.728,0.02,0.669,0.031,0.893,0.007,0.446,0.035
