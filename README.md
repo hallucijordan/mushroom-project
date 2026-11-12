@@ -1,7 +1,7 @@
 # Mushroom Project: Label-Efficient Fungi Classification with Active Learning
 
 Course project for 02-750 Automation of Scientific Research (Carnegie Mellon University, Spring 2026),
-by Luci Lu and Ziyan Zhang.
+by Luci Lu and Ziyan Zhang. The final report is [`main.pdf`](main.pdf).
 
 The main question: **how many labeled images does a mushroom edibility classifier need, and can active
 learning reduce that number compared with random labeling?** We test 6 query strategies on 36,361 fungus
@@ -17,22 +17,29 @@ A smaller second part is a Gemini Vision demo app that judges a mushroom photo t
 | | Labels | Bucket accuracy (4 classes) |
 |---|---:|---:|
 | Majority-class baseline | 0 | 0.570 |
-| Full supervision (whole training pool) | 32,724 | 0.817 |
-| Margin sampling: labels to reach 90% of full supervision | **1,300** (4% of the pool) | 0.735 |
-| Random sampling: labels to reach 90% of full supervision | 1,380 | 0.735 |
+| Full supervision (whole training pool) | 32,724 | 0.824 |
+| Margin sampling: labels to reach 90% of full supervision | **1,340** (4% of the pool) | 0.741 |
+| Random sampling: labels to reach 90% of full supervision | 1,400 | 0.741 |
+| Margin sampling: labels to reach 95% of full supervision | **3,700** (all 5 seeds) | 0.783 |
+| Random sampling: labels to reach 95% of full supervision | 4,550 (only 2 of 5 seeds) | 0.783 |
 
-Margin sampling reached the 90% target slightly earlier than random sampling. **Most other uncertainty-based
-strategies needed more labels than random** (table below). With a strong pretrained backbone, active learning
-gave only a small advantage in this setting.
+- **Margin sampling is the most label-efficient strategy** at the 90% and 95% targets.
+- **No strategy is best on every metric.** At 5,000 labels, bucket accuracy differs by only 1.4 points, but
+  recall on the UNCERTAIN bucket differs by 4.3 points. BALD has the best bucket accuracy, and class-balanced
+  entropy has the best UNCERTAIN recall. Margin is close to the best on both.
+- **The frozen backbone limits the result more than the strategy does.** Full supervision is still 17 points
+  below a perfect classifier.
 
 ## Repository layout
 
 | Path | Part | What it is |
 |---|---|---|
+| `main.pdf`, `main.tex` | 1 | Final report |
 | `00_data_analysis.ipynb` | 1 | Edibility label analysis: species to 4 buckets, per-genus and per-image distributions |
-| `01b_embedding_picekvit.ipynb` | 1 | Frozen ViT-B/16 embeddings (768-dim) for all 36,361 images |
-| `02b_active_learning_picekvit.ipynb` | 1 | Full-supervision ceiling, 6 strategies x 5 seeds, learning curves, label efficiency |
-| `main.ipynb` | 1 | Active-learning experiments on the tabular UCI mushroom data |
+| `01b_embedding_picekvit.ipynb` | 1 | Frozen ViT-B/16 embeddings (768-dim) for all 36,361 images, logistic-regression sanity check |
+| `02b_active_learning_picekvit.ipynb` | 1 | Full-supervision ceiling, 6 strategies x 5 seeds, learning curves, label efficiency, per-genus analysis |
+| `results/` | 1 | Result tables (CSV) and the figures used in the report |
+| `main.ipynb` | 1 | Early active-learning experiments on the tabular UCI mushroom data |
 | `app.py`, `train.py`, `src/` | 2 | Gemini demo app |
 | `PROPOSAL.md`, `milestone_1.md` | | Project proposal and milestone report |
 
@@ -53,28 +60,42 @@ gave only a small advantage in this setting.
   | UNCERTAIN | Edibility not well documented | 25 | 254 |
 
 - **Features:** frozen ViT-B/16-224 checkpoint from Picek et al., fine-tuned on DF20-Mini. No backbone training
-  on our side.
-- **Classifier:** MLP (512-256) with MC dropout (p = 0.2), trained on species (179 classes). Species
-  probabilities are summed into buckets ("soft") or the top species decides the bucket ("hard").
+  on our side. A logistic regression on these features reaches 0.626 test species accuracy.
+- **Classifier:** MLP (768-512-256-179) with MC dropout (p = 0.4, 20 forward passes), retrained from scratch
+  every round and trained on species (179 classes). The species prediction is turned into a bucket in two ways:
+  the top species decides the bucket ("hard"), or species probabilities are summed per bucket ("soft").
 - **Active learning loop:** 400 initial labels (about 2 per species, stratified), then batches of 100 up to
-  3,000 labels (9.2% of the pool). Strategies: random, entropy, margin, coreset, class-balanced entropy, BALD.
+  5,000 labels (15% of the pool). Strategies: random, entropy, margin, coreset, class-balanced entropy, BALD.
   5 seeds each.
 
 ### Results
 
-Full supervision (all 32,724 labels): species top-1 accuracy 0.591, bucket accuracy 0.817 (hard) and 0.821
-(soft).
+Full supervision (all 32,724 labels): species top-1 accuracy 0.607, bucket accuracy 0.824 (hard) and 0.831
+(soft). Recall is 0.895 for AVOID but only 0.535 for UNCERTAIN.
 
-Labels needed to reach a share of the full-supervision bucket accuracy (mean over 5 seeds; all seeds reached
-each target):
+Labels needed to reach a share of the full-supervision bucket accuracy (mean over the seeds that reached the
+target; the number of seeds is shown when not all 5 reached it):
 
 | Target | Random | Entropy | **Margin** | Coreset | CB entropy | BALD |
 |---|---:|---:|---:|---:|---:|---:|
-| 80% (0.653) | 480 | 540 | **480** | 600 | 560 | 500 |
-| 90% (0.735) | 1,380 | 1,660 | **1,300** | 2,260 | 1,900 | 1,480 |
+| 80% (0.659) | 520 | 620 | **520** | 660 | 660 | 560 |
+| 90% (0.741) | 1,400 | 1,940 | **1,340** | 2,500 | 1,980 | 1,660 |
+| 95% (0.783) | 4,550 (2/5) | 4,500 | **3,700** | not reached | 4,800 (4/5) | 3,920 |
 
-Bucket accuracy at 3,000 labels (hard, mean over 5 seeds): BALD 0.769, margin 0.768, entropy 0.763,
-random 0.758, CB entropy 0.753, coreset 0.753. The spread is about 1.6 points.
+At 5,000 labels (hard decoding, mean over 5 seeds):
+
+| Strategy | Bucket accuracy | AVOID recall | UNCERTAIN recall |
+|---|---:|---:|---:|
+| BALD | **0.789** | **0.896** | 0.450 |
+| Margin | 0.785 | 0.877 | 0.487 |
+| Entropy | 0.783 | 0.875 | 0.477 |
+| CB entropy | 0.782 | 0.875 | **0.489** |
+| Random | 0.780 | 0.876 | 0.461 |
+| Coreset | 0.775 | 0.866 | 0.446 |
+
+All strategies catch about 9 in 10 AVOID images. For the deadliest genus, *Amanita*, AVOID recall is 0.90
+with soft decoding, although species accuracy on *Amanita* is only about 0.65. The full tables are in
+`results/` and in the report.
 
 ### How to reproduce
 
@@ -87,8 +108,8 @@ Data and model files are not in the repository (too large):
 | `artifacts/species_edibility_map.csv` | Edibility table for the 179 species, generated with Claude (Anthropic) (not included) |
 | `artifacts/df20m_metadata.csv` | Cleaned metadata from an earlier CLIP-based pipeline (not included). Notebook 01b rebuilds the same table from the DF20-Mini metadata as `df20m_metadata_picekvit.csv`; notebook 00 reads it under the old name. |
 
-Run order: `01b_embedding_picekvit` (embeddings, 20-40 min on Apple M4), then `00_data_analysis` (writes the
-species-to-bucket table), then `02b_active_learning_picekvit` (30 runs, about 20 s each).
+Run order: `01b_embedding_picekvit` (embeddings, about 20 min on Apple Silicon), then `00_data_analysis`
+(writes the species-to-bucket table), then `02b_active_learning_picekvit` (30 runs; writes `results/`).
 
 The notebooks need `torch`, `torchvision` and `timm` in addition to `requirements.txt`.
 
@@ -116,10 +137,13 @@ The UCI data is already in `data/MushroomDataset/` (`download_data.py` fetches i
 ## Limitations
 
 - **The edibility labels come from an LLM (Claude), not from experts.** UNCERTAIN mostly means the LLM had
-  low confidence (24 of 25 species). Some labels may be wrong.
+  low confidence (24 of 25 species). Some labels may be wrong. AVOID mixes 2 deadly species with many
+  species that are only poisonous or inedible.
 - **The backbone was fine-tuned on the same DF20-Mini training split**, so the embeddings are an upper bound,
-  not a true transfer-learning setting. A strong backbone also leaves less room for active learning to help.
-- One dataset, one classifier, frozen features, 5 seeds. The differences between strategies are small.
+  not a true cold-start setting. A frozen backbone also leaves less room for active learning to help. Training
+  the backbone inside the loop was not tested.
+- One dataset (Danish fungi), one classifier, 5 seeds. The differences in bucket accuracy between strategies
+  are small.
 - **Demo app:** the Random Forest reaches about 0.9999 test accuracy on a random split of the simulated data.
   This number is not meaningful: the simulated rows come from only 173 species, so test rows are very
   similar to training rows. The classifier is also overconfident (often 100%) when Gemini returns only a few
