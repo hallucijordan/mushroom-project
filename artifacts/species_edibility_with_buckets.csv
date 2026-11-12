@@ -1,0 +1,180 @@
+species,genus,edibility_raw,edibility_cooked,toxicity_level,confidence,bucket,notes
+Agaricus arvensis,Agaricus,edible_cooked_only,edible,1,high,SAFE,Horse Mushroom; raw may cause mild GI in some; good edible cooked
+Agaricus augustus,Agaricus,edible_cooked_only,edible,1,high,SAFE,The Prince; almond scent; excellent edible; raw best avoided
+Agaricus bernardii,Agaricus,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Salt-loving; strong smell; edible but mediocre quality
+Agaricus bisporus,Agaricus,edible,edible,0,high,SAFE,Button/Cultivated mushroom; safe raw or cooked; widely consumed
+Agaricus bitorquis,Agaricus,edible_cooked_only,edible,0,high,SAFE,Pavement Mushroom; firm; good edible; cook to be safe
+Agaricus bohusii,Agaricus,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Large species; edible but mediocre; some GI sensitivity raw
+Agaricus brunneolus,Agaricus,unknown,unknown,1,low,UNCERTAIN,Poorly documented edibility; insufficient data in major references
+Agaricus campestris,Agaricus,edible_cooked_only,edible,0,high,SAFE,Field Mushroom; classic wild edible; cook recommended
+Agaricus crocodilinus,Agaricus,edible_cooked_only,edible,1,medium,SAFE,Large edible; related to A. arvensis; cook thoroughly
+Agaricus cupreobrunneus,Agaricus,unknown,unknown,1,low,UNCERTAIN,Insufficient documentation in authoritative references
+Agaricus dulcidulus,Agaricus,unknown,unknown,1,low,UNCERTAIN,Small species; edibility insufficiently documented
+Agaricus impudicus,Agaricus,inedible,inedible,1,medium,AVOID,Very unpleasant smell; not toxic but strongly unpalatable
+Agaricus langei,Agaricus,edible_cooked_only,edible,1,medium,SAFE,Blushing Wood Mushroom relative; edible cooked; cook thoroughly
+Agaricus lanipes,Agaricus,edible_cooked_only,edible,1,medium,SAFE,Edible but mediocre; cook to avoid any mild GI risk
+Agaricus litoralis,Agaricus,edible_cooked_only,edible,1,medium,SAFE,Coastal Agaricus; edible cooked; quality moderate
+Agaricus moelleri,Agaricus,poisonous,poisonous,2,high,AVOID,Inky Mushroom; phenol smell; yellows at base; causes GI illness
+Agaricus subfloccosus,Agaricus,unknown,unknown,1,low,UNCERTAIN,Confusion risk with toxic Agaricus spp.; insufficient data
+Agaricus subperonatus,Agaricus,unknown,unknown,1,low,UNCERTAIN,Poorly documented; insufficient literature for safe classification
+Agaricus sylvaticus,Agaricus,edible_cooked_only,edible,1,high,SAFE,Blushing Wood Mushroom; good edible; blushes red when cut
+Agaricus sylvicola,Agaricus,edible_cooked_only,edible,1,high,SAFE,Wood Mushroom; anise scent; edible; cook to avoid raw GI
+Agaricus xanthodermus,Agaricus,poisonous,poisonous,2,high,AVOID,Yellow-staining Mushroom; phenolic smell; reliable GI toxin
+Amanita ceciliae,Amanita,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Snakeskin Grisette; edible cooked only; avoid raw; confusion risk
+Amanita citrina,Amanita,poisonous,poisonous,1,medium,AVOID,False Death Cap; unpleasant smell; dangerous confusion risk with phalloides
+Amanita crocea,Amanita,edible_cooked_only,edible_cooked_only,1,high,COOK_FIRST,Orange Grisette; edible cooked only; lacks ring and volva cap
+Amanita excelsa,Amanita,poisonous,poisonous,2,medium,AVOID,Grey Spotted Amanita; edibility disputed; toxic in some reports; avoid
+Amanita franchetii,Amanita,poisonous,poisonous,2,medium,AVOID,Franchet's Amanita; edibility doubtful; some toxicity reports
+Amanita fulva,Amanita,edible_cooked_only,edible_cooked_only,1,high,COOK_FIRST,Tawny Grisette; edible cooked only; do not eat raw
+Amanita gemmata,Amanita,poisonous,poisonous,3,high,AVOID,Jewelled Amanita; ibotenic acid and muscimol; reliable poisonings
+Amanita lividopallescens,Amanita,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Grisette group; edible cooked only; cook thoroughly
+Amanita muscaria,Amanita,poisonous,poisonous,3,high,AVOID,Fly Agaric; ibotenic acid; muscimol; psychoactive; rarely fatal
+Amanita pantherina,Amanita,poisonous,poisonous,3,high,AVOID,Panther Cap; ibotenic acid; scopolamine; more toxic than muscaria
+Amanita phalloides,Amanita,deadly,deadly,5,high,AVOID,Death Cap; amatoxins; ~90% of fatal mushroom poisonings worldwide
+Amanita porphyria,Amanita,poisonous,poisonous,2,medium,AVOID,Porphyry Amanita; suspected toxic; avoid; edibility not established
+Amanita rubescens,Amanita,poisonous,edible_cooked_only,2,high,COOK_FIRST,Blusher; hemolysins destroyed by heat; poisonous raw; edible cooked
+Amanita strobiliformis,Amanita,unknown,unknown,2,medium,UNCERTAIN,Edibility uncertain; some toxicity suspected; best avoided
+Amanita submembranacea,Amanita,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Grisette relative; edible cooked only; handle with care
+Amanita vaginata,Amanita,edible_cooked_only,edible_cooked_only,1,high,COOK_FIRST,Grisette; edible cooked only; lacks ring; cook thoroughly
+Amanita virosa,Amanita,deadly,deadly,5,high,AVOID,Destroying Angel; amatoxins; extremely lethal; white all-over
+Boletus aereus,Boletus,edible,edible,0,high,SAFE,Black Porcini; excellent edible; prized in southern Europe
+Boletus edulis,Boletus,edible,edible,0,high,SAFE,Porcini/Cep; finest edible bolete; safe raw or cooked
+Boletus ferrugineus,Boletus,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Rusty Bolete; edible cooked; quality moderate; cook thoroughly
+Boletus pinophilus,Boletus,edible,edible,0,high,SAFE,Pine Bolete; excellent edible; close relative of B. edulis
+Boletus reticulatus,Boletus,edible,edible,0,high,SAFE,Summer Porcini; excellent choice edible; safe raw or cooked
+Boletus subtomentosus,Boletus,edible_cooked_only,edible_cooked_only,1,high,COOK_FIRST,Suede Bolete; edible but poor quality; cook thoroughly
+Clitocybe agrestis,Clitocybe,poisonous,poisonous,2,low,AVOID,Small field Clitocybe; muscarine suspected; insufficient documentation
+Clitocybe costata,Clitocybe,unknown,unknown,1,low,UNCERTAIN,Ribbed Funnel; edibility insufficiently documented; avoid
+Clitocybe diatreta,Clitocybe,poisonous,poisonous,2,low,AVOID,Small whitish Clitocybe; muscarine likely; avoid per genus rule
+Clitocybe fragrans,Clitocybe,poisonous,poisonous,2,medium,AVOID,Fragrant Funnel; anise scent; muscarine suspected; GI toxic
+Clitocybe gibba,Clitocybe,poisonous,poisonous,2,medium,AVOID,Common Funnel; muscarine suspected; GI cases reported; avoid
+Clitocybe metachroa,Clitocybe,unknown,unknown,1,low,UNCERTAIN,Two-toned Funnel; insufficient edibility data; potentially toxic
+Clitocybe nebularis,Clitocybe,poisonous,poisonous,2,high,AVOID,Clouded Agaric; GI toxin; causes illness in many; not recommended
+Clitocybe odora,Clitocybe,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Aniseed Toadstool; used as flavoring; edible in small cooked amounts
+Clitocybe phaeophthalma,Clitocybe,poisonous,poisonous,2,medium,AVOID,Chicken Run Funnel; muscarine suspected; avoid; unpleasant smell
+Clitocybe phyllophila,Clitocybe,poisonous,poisonous,3,high,AVOID,Frosty Funnel; muscarine; causes reliable muscarinic syndrome
+Clitocybe rivulosa,Clitocybe,poisonous,poisonous,3,high,AVOID,Fool's Funnel; muscarine; confusion risk with edible fairy-ring
+Clitocybe squamulosa,Clitocybe,unknown,unknown,1,low,UNCERTAIN,Scaly Funnel; edibility insufficiently documented in literature
+Clitocybe vibecina,Clitocybe,poisonous,poisonous,2,low,AVOID,Mealy Funnel; suspected toxic; default per small whitish genus rule
+Mycena abramsii,Mycena,inedible,inedible,1,low,AVOID,Too small; no nutritional value; no toxicity data; inedible
+Mycena acicula,Mycena,inedible,inedible,1,low,AVOID,Orange Bonnet; minute; no edibility data; too small to matter
+Mycena aetites,Mycena,inedible,inedible,1,low,AVOID,Drab Bonnet; tiny; no edibility interest; default inedible
+Mycena amicta,Mycena,inedible,inedible,1,low,AVOID,Coldfoot Mycena; tiny; no edibility data; default inedible
+Mycena arcangeliana,Mycena,inedible,inedible,1,low,AVOID,Angel's Bonnet; tiny; no documented edibility; default inedible
+Mycena aurantiomarginata,Mycena,poisonous,poisonous,2,medium,AVOID,Golden Edge Bonnet; alkaloids documented; not edible
+Mycena belliae,Mycena,inedible,inedible,1,low,AVOID,Sedge Bonnet; tiny; no edibility data; default inedible
+Mycena capillaripes,Mycena,inedible,inedible,1,low,AVOID,Tiny; no edibility data; default inedible per genus rule
+Mycena capillaris,Mycena,inedible,inedible,1,low,AVOID,Hair-like; minute; no edibility data; default inedible
+Mycena chlorantha,Mycena,poisonous,poisonous,2,low,AVOID,Suspected toxic alkaloids; avoid; default poisonous per genus
+Mycena cinerella,Mycena,inedible,inedible,1,low,AVOID,Ashen Bonnet; tiny; no edibility interest; default inedible
+Mycena citrinomarginata,Mycena,inedible,inedible,1,low,AVOID,Lemon-edged Bonnet; tiny; no edibility data; default inedible
+Mycena clavicularis,Mycena,inedible,inedible,1,low,AVOID,Tiny; no edibility data; default inedible per genus rule
+Mycena clavularis,Mycena,inedible,inedible,1,low,AVOID,Tiny; no edibility data; default inedible per genus rule
+Mycena crocata,Mycena,poisonous,poisonous,2,medium,AVOID,Saffron Bonnet; orange latex; crocatin alkaloid documented
+Mycena diosma,Mycena,inedible,inedible,1,low,AVOID,Clove Scented Bonnet; no edibility data; default inedible
+Mycena epipterygia,Mycena,inedible,inedible,1,low,AVOID,Yellow Leg Bonnet; tiny; no edibility interest; default inedible
+Mycena erubescens,Mycena,inedible,inedible,1,low,AVOID,Blushing Bonnet; no edibility data; default inedible
+Mycena filopes,Mycena,inedible,inedible,1,low,AVOID,Iodine Bonnet; minute; no edibility data; default inedible
+Mycena flavescens,Mycena,inedible,inedible,1,low,AVOID,Yellowish Bonnet; no edibility data; default inedible
+Mycena galericulata,Mycena,inedible,inedible,1,medium,AVOID,Common Bonnet; edibility very poor; no nutritional value; avoid
+Mycena galopus,Mycena,inedible,inedible,1,medium,AVOID,Milking Bonnet; white latex; tiny; no culinary value
+Mycena haematopus,Mycena,inedible,inedible,1,medium,AVOID,Bleeding Bonnet; blood-red latex; tiny; no culinary value
+Mycena inclinata,Mycena,inedible,inedible,1,medium,AVOID,Clustered Bonnet; tiny; sometimes in clusters but not edible
+Mycena juniperina,Mycena,inedible,inedible,1,low,AVOID,Juniper Bonnet; tiny; no edibility data; default inedible
+Mycena leptocephala,Mycena,poisonous,poisonous,2,medium,AVOID,Nitrous Bonnet; cyanide-like smell; suspected toxic compounds
+Mycena luteovariegata,Mycena,inedible,inedible,1,low,AVOID,No edibility data; default inedible per genus rule
+Mycena megaspora,Mycena,inedible,inedible,1,low,AVOID,No edibility data; default inedible per genus rule
+Mycena meliigena,Mycena,inedible,inedible,1,low,AVOID,Bark Bonnet; tiny; no edibility data; default inedible
+Mycena metata,Mycena,inedible,inedible,1,low,AVOID,Conifer Bonnet; tiny; no edibility data; default inedible
+Mycena olivaceomarginata,Mycena,inedible,inedible,1,low,AVOID,Brownedge Bonnet; no edibility data; default inedible
+Mycena pelianthina,Mycena,poisonous,poisonous,2,medium,AVOID,Blackedge Bonnet; alkaloids documented; violet gill edge
+Mycena polygramma,Mycena,inedible,inedible,1,medium,AVOID,Grooved Bonnet; no culinary value; default inedible
+Mycena pseudocorticola,Mycena,inedible,inedible,1,low,AVOID,Bark Bonnet; tiny; no edibility data; default inedible
+Mycena pterigena,Mycena,inedible,inedible,1,low,AVOID,Fern Bonnet; grows on ferns; tiny; default inedible
+Mycena pura,Mycena,poisonous,poisonous,2,high,AVOID,Lilac Bonnet; muscarine documented; causes reliable GI/muscarinic symptoms
+Mycena purpureofusca,Mycena,inedible,inedible,1,low,AVOID,Purple Edge Bonnet; no edibility data; default inedible
+Mycena renati,Mycena,inedible,inedible,1,low,AVOID,Beautiful Bonnet; no edibility data; default inedible
+Mycena rosea,Mycena,poisonous,poisonous,2,medium,AVOID,Rosy Bonnet; muscarine documented; avoid; toxic alkaloids
+Mycena rosella,Mycena,inedible,inedible,1,low,AVOID,Pink Bonnet; tiny; no edibility data; default inedible
+Mycena rubromarginata,Mycena,inedible,inedible,1,low,AVOID,Red Edge Bonnet; tiny; no edibility data; default inedible
+Mycena sanguinolenta,Mycena,inedible,inedible,1,medium,AVOID,Bleeding Mycena; blood latex; tiny; no culinary interest
+Mycena silvae-nigrae,Mycena,inedible,inedible,1,low,AVOID,No edibility data; default inedible per genus rule
+Mycena stipata,Mycena,poisonous,poisonous,2,low,AVOID,Clustered species; suspected alkaloids; default poisonous
+Mycena stylobates,Mycena,inedible,inedible,1,low,AVOID,Bulb-sheathed Bonnet; tiny; no edibility data; default inedible
+Mycena tenerrima,Mycena,inedible,inedible,1,low,AVOID,Delicate Bonnet; minute; no edibility data; default inedible
+Mycena tintinnabulum,Mycena,inedible,inedible,1,low,AVOID,Bell Bonnet; tiny; no edibility data; default inedible
+Mycena vitilis,Mycena,inedible,inedible,1,low,AVOID,Snapping Bonnet; tiny; no edibility interest; default inedible
+Mycena vulgaris,Mycena,inedible,inedible,1,low,AVOID,Vulgar Bonnet; tiny; no edibility data; default inedible
+Russula acrifolia,Russula,poisonous,poisonous,2,medium,AVOID,Acrid-gilled Russula; acrid taste; GI toxic; acrifolia = acrid
+Russula adusta,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Blackening Russula; mild taste; edible but poor quality
+Russula aeruginea,Russula,edible_cooked_only,edible_cooked_only,1,high,COOK_FIRST,Grass Green Russula; mild taste; good edible; common species
+Russula amoenolens,Russula,poisonous,poisonous,2,medium,AVOID,Camembert Russula; unpleasant/rancid smell; GI toxic
+Russula atropurpurea,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Dark Purple Russula; mild taste; edible cooked; moderate quality
+Russula atrorubens,Russula,poisonous,poisonous,2,medium,AVOID,Dark Red Russula; acrid/peppery taste; GI toxic; avoid
+Russula aurea,Russula,edible_cooked_only,edible,1,high,SAFE,Gilded Russula; mild taste; good edible; golden cap and gills
+Russula aurora,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Dawn Russula; mild taste; edible; moderate quality
+Russula betularum,Russula,poisonous,poisonous,2,medium,AVOID,Birch Russula; very acrid peppery taste; GI toxic
+Russula brunneoviolacea,Russula,unknown,unknown,1,low,UNCERTAIN,Edibility insufficiently documented; default unknown
+Russula caerulea,Russula,poisonous,poisonous,2,medium,AVOID,Humpback Russula; edibility disputed; GI cases reported; avoid
+Russula cessans,Russula,unknown,unknown,1,low,UNCERTAIN,Pine Needle Russula; edibility insufficiently documented
+Russula chloroides,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Greenish Russula; mild taste; edible; poor quality
+Russula claroflava,Russula,edible_cooked_only,edible_cooked_only,1,high,COOK_FIRST,Yellow Swamp Russula; mild taste; good edible in birch bogs
+Russula cuprea,Russula,unknown,unknown,1,low,UNCERTAIN,Edibility insufficiently documented in authoritative sources
+Russula curtipes,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Short-stemmed Russula; mild taste; edible; moderate quality
+Russula cyanoxantha,Russula,edible_cooked_only,edible,0,high,SAFE,Charcoal Burner; excellent edible; most popular Russula in Europe
+Russula decolorans,Russula,edible_cooked_only,edible_cooked_only,1,high,COOK_FIRST,Copper Russula; mild taste; good edible in pine forests
+Russula delica,Russula,edible_cooked_only,edible_cooked_only,1,high,COOK_FIRST,Milk White Russula; mild taste; edible; poor quality; firm
+Russula densifolia,Russula,poisonous,poisonous,2,medium,AVOID,Densely-gilled Russula; acrid taste; GI toxic; avoid
+Russula depallens,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Fading Russula; mild taste; edible cooked; moderate quality
+Russula emetica,Russula,poisonous,poisonous,2,high,AVOID,The Sickener; very acrid; causes vomiting; name says it all
+Russula faginea,Russula,unknown,unknown,1,low,UNCERTAIN,Beech Russula; edibility insufficiently documented
+Russula farinipes,Russula,poisonous,poisonous,2,medium,AVOID,Mealy-foot Russula; acrid/peppery taste; GI toxic
+Russula faustiana,Russula,unknown,unknown,1,low,UNCERTAIN,Edibility insufficiently documented in authoritative sources
+Russula fellea,Russula,poisonous,poisonous,2,high,AVOID,Geranium Russula; geranium/fruity smell; very acrid; GI toxic
+Russula foetens,Russula,poisonous,poisonous,2,high,AVOID,Stinking Russula; rancid smell; reliably GI toxic; avoid
+Russula fragilis,Russula,poisonous,poisonous,2,high,AVOID,Fragile Russula; very acrid peppery; reliably GI toxic
+Russula grata,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Almond Russula; pleasant almond smell; mild taste; edible
+Russula graveolens,Russula,unknown,unknown,1,low,UNCERTAIN,Strong-smelling Russula; edibility uncertain; insufficient data
+Russula grisea,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Greyish Russula; mild taste; edible; moderate quality
+Russula heterophylla,Russula,edible_cooked_only,edible,0,high,SAFE,Green Cracking Russula; mild taste; excellent edible; sought after
+Russula illota,Russula,poisonous,poisonous,2,medium,AVOID,Rolland's Russula; acrid taste; GI toxic; avoid
+Russula insignis,Russula,unknown,unknown,1,low,UNCERTAIN,Edibility insufficiently documented; default unknown
+Russula integra,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Entire Russula; mild taste; edible; moderate quality
+Russula ionochlora,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Oilslick Russula; mild taste; edible; moderate quality
+Russula laccata,Russula,unknown,unknown,1,low,UNCERTAIN,Edibility insufficiently documented in authoritative references
+Russula laeta,Russula,unknown,unknown,1,low,UNCERTAIN,Edibility insufficiently documented; default unknown
+Russula luteotacta,Russula,poisonous,poisonous,2,medium,AVOID,Yellowing Russula; turns yellow on touch; GI toxic; avoid
+Russula maculata,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Spotted Russula; mild taste; edible; moderate quality
+Russula melliolens,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Honey-scented Russula; pleasant honey smell; edible cooked
+Russula nauseosa,Russula,poisonous,poisonous,2,medium,AVOID,Nauseous Russula; nauseous smell; GI toxic; name indicates toxicity
+Russula nitida,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Purple Swamp Russula; mild taste; edible; moderate quality
+Russula nobilis,Russula,poisonous,poisonous,2,high,AVOID,Beechwood Sickener; very acrid; reliably GI toxic in beech woods
+Russula ochroleuca,Russula,poisonous,poisonous,2,medium,AVOID,Common Yellow Russula; mild-acrid taste; edibility disputed; avoid
+Russula odorata,Russula,unknown,unknown,1,low,UNCERTAIN,Scented Russula; edibility insufficiently documented
+Russula olivacea,Russula,edible_cooked_only,edible_cooked_only,1,high,COOK_FIRST,Olive Russula; mild taste; good edible; popular in continental Europe
+Russula paludosa,Russula,edible_cooked_only,edible_cooked_only,1,high,COOK_FIRST,Swamp Russula; mild taste; good edible in boggy pine forests
+Russula parazurea,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Powdery Russula; mild taste; edible; moderate quality
+Russula pelargonia,Russula,poisonous,poisonous,2,medium,AVOID,Geranium-scented Russula; geranium smell; acrid; GI toxic
+Russula praetervisa,Russula,unknown,unknown,1,low,UNCERTAIN,Edibility insufficiently documented in authoritative sources
+Russula pseudointegra,Russula,poisonous,poisonous,2,medium,AVOID,False Entire Russula; acrid taste; GI toxic; avoid
+Russula puellaris,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Maiden Russula; mild taste; edible but fragile; moderate quality
+Russula queletii,Russula,poisonous,poisonous,2,high,AVOID,Fruity Russula; very acrid taste; reliably GI toxic; avoid
+Russula risigallina,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Golden Russula; mild taste; edible; moderate quality
+Russula romellii,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Romell's Russula; mild taste; edible cooked; moderate quality
+Russula rosea,Russula,poisonous,poisonous,2,medium,AVOID,Rose Russula; acrid taste; GI toxic; avoid
+Russula roseoaurantia,Russula,unknown,unknown,1,low,UNCERTAIN,Edibility insufficiently documented; default unknown
+Russula sanguinea,Russula,poisonous,poisonous,2,high,AVOID,Blood Russula; very acrid taste; reliably GI toxic; avoid
+Russula sardonia,Russula,poisonous,poisonous,2,high,AVOID,Primrose Russula; very acrid/burning taste; reliably GI toxic
+Russula seperina,Russula,unknown,unknown,1,low,UNCERTAIN,Edibility insufficiently documented; default unknown
+Russula silvestris,Russula,poisonous,poisonous,2,low,AVOID,Suspected acrid; default poisonous per safety rule; avoid
+Russula solaris,Russula,unknown,unknown,1,low,UNCERTAIN,Sun Russula; edibility insufficiently documented; default unknown
+Russula sororia,Russula,poisonous,poisonous,2,medium,AVOID,Sepia Russula; acrid/peppery taste; GI toxic; avoid
+Russula subrubens,Russula,unknown,unknown,1,low,UNCERTAIN,Edibility insufficiently documented in authoritative references
+Russula velenovskyi,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Velenovský's Russula; mild taste; edible cooked; moderate quality
+Russula versicolor,Russula,unknown,unknown,1,low,UNCERTAIN,Variable Russula; edibility uncertain; complex taxon; avoid
+Russula vesca,Russula,edible,edible,0,high,SAFE,Bare-toothed Russula; excellent edible; safe raw or cooked; choice
+Russula veternosa,Russula,poisonous,poisonous,2,medium,AVOID,Rose-gilled Russula; acrid taste; GI toxic; avoid
+Russula violeipes,Russula,edible_cooked_only,edible_cooked_only,1,medium,COOK_FIRST,Velvet Shank Russula; mild taste; edible; moderate quality
+Russula virescens,Russula,edible_cooked_only,edible,0,high,SAFE,Greencracked Russula; excellent edible; cracked green cap
+Russula viscida,Russula,poisonous,poisonous,2,medium,AVOID,Sticky Russula; acrid taste; GI toxic; avoid
+Russula xerampelina,Russula,edible_cooked_only,edible,0,high,SAFE,Crab Russula; mild; crab/shrimp smell; excellent edible

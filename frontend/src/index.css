@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* ─── Night-pixel palette ─── */
+:root {
+  --bg-deep:    #0f0e17;
+  --bg-surface: #1a1a2e;
+  --bg-card:    #16213e;
+  --bg-raised:  #1f2b47;
+  --accent:     #e2a346;
+  --accent-dim: #b8832f;
+  --text:       #e8e6e3;
+  --text-muted: #8b8da0;
+  --border:     #2a2d4a;
+  --success:    #4ade80;
+  --danger:     #f87171;
+  --pixel-font: 'Press Start 2P', monospace;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-deep);
+  color: var(--text);
+  font-family: var(--pixel-font);
+  font-size: 10px;
+  line-height: 1.8;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+}
+
+/* Readable body text uses a system font; only headings & UI chrome use pixel */
+.font-body {
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Typewriter cursor */
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+}
+
+/* pixel-perfect images */
+img[style*="pixelated"] {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Subtle star twinkle background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.3) 50%, transparent 50%),
+    radial-gradient(1px 1px at 30% 70%, rgba(255,255,255,0.2) 50%, transparent 50%),
+    radial-gradient(1px 1px at 50% 40%, rgba(255,255,255,0.25) 50%, transparent 50%),
+    radial-gradient(1px 1px at 70% 15%, rgba(255,255,255,0.2) 50%, transparent 50%),
+    radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.3) 50%, transparent 50%),
+    radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.15) 50%, transparent 50%),
+    radial-gradient(1px 1px at 95% 80%, rgba(255,255,255,0.2) 50%, transparent 50%),
+    radial-gradient(2px 2px at 25% 50%, rgba(226,163,70,0.15) 50%, transparent 50%),
+    radial-gradient(2px 2px at 60% 90%, rgba(226,163,70,0.1) 50%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+* { box-sizing: border-box; }

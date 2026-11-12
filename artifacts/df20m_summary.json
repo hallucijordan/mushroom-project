@@ -1,0 +1,13 @@
+{
+  "clip_model": "ViT-B-32",
+  "clip_pretrained": "openai",
+  "embedding_dim": 512,
+  "n_images": 36361,
+  "n_species": 179,
+  "n_genera": 6,
+  "n_train": 32724,
+  "n_test": 3637,
+  "split_source": "official DF20-Mini train/test CSVs",
+  "random_state": 42,
+  "device": "mps"
+}
