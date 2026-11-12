@@ -1,0 +1,5 @@
+target,threshold,random,entropy,margin,coreset,cb_entropy,bald
+80% of full-sup hard_bucket_acc,0.659,520 (5/5),620 (5/5),520 (5/5),660 (5/5),660 (5/5),560 (5/5)
+90% of full-sup hard_bucket_acc,0.741,1400 (5/5),1940 (5/5),1340 (5/5),2500 (5/5),1980 (5/5),1660 (5/5)
+95% of full-sup hard_bucket_acc,0.783,4550 (2/5),4500 (5/5),3700 (5/5),N/A,4800 (4/5),3920 (5/5)
+95% of full-sup soft_bucket_acc,0.79,4600 (4/5),3920 (5/5),3360 (5/5),4550 (2/5),4000 (5/5),3360 (5/5)
